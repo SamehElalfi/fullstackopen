@@ -11,7 +11,14 @@ const Buttons = (props) => (
   </>
 );
 
-const Result = ({ title, value }) => <p> {title}: <b>{value}</b> </p>;
+const Result = ({ title, value }) => (
+  <tr>
+    <td>{title}:</td>
+    <td>
+      <b>{value}</b>
+    </td>
+  </tr>
+);
 const Statistics = ({ good, natural, bad }) => {
   if (!good && !natural && !bad) {
     return <p>No feedback given</p>;
@@ -23,12 +30,22 @@ const Statistics = ({ good, natural, bad }) => {
 
   return (
     <>
-      <Result title="Good" value={ good }/>
-      <Result title="Natural" value={ natural }/>
-      <Result title="Bad" value={ bad }/>
-      <Result title="All" value={ all }/>
-      <Result title="Average" value={average.toFixed(2) + "%"} />
-      <Result title="Positive" value={positive.toFixed(2) + "%"}/>
+      <table>
+        <thead>
+          <tr>
+            <td>Title</td>
+            <td>Value</td>
+          </tr>
+        </thead>
+        <tbody>
+          <Result title="Good" value={good} />
+          <Result title="Natural" value={natural} />
+          <Result title="Bad" value={bad} />
+          <Result title="All" value={all} />
+          <Result title="Average" value={average.toFixed(2) + "%"} />
+          <Result title="Positive" value={positive.toFixed(2) + "%"} />
+        </tbody>
+      </table>
     </>
   );
 };
