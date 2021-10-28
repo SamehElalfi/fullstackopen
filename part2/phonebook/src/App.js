@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import Names from "./components/Names";
 import AddNew from "./components/AddNew";
 import Search from "./components/Search";
 
 function App() {
-  const [names, setNames] = useState([
-    { name: "Sameh Ashraf", phone: "0123456789" },
-  ]);
-
+  const [names, setNames] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredPersons, setFilteredPersons] = useState([]);
 
@@ -37,6 +36,12 @@ function App() {
 
     setFilteredPersons(foundPersons);
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/persons")
+      .then((response) => setNames(response.data));
+  }, []);
 
   return (
     <div className="App">

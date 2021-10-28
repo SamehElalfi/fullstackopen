@@ -1,6 +1,8 @@
 import React from "react";
 
 function Names({ names }) {
+  if (names.length === 0) return "Loading Names";
+  
   return (
     <>
       <h2>Numbers</h2>
